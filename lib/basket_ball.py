@@ -233,8 +233,23 @@ def team_names(game_data):
 
 print(team_names(game_dict()))
 
-def player_numbers():
+def player_numbers(team_name, game_data=game_dict()):
+    """
+    Args: team name
+    Purpose:returns a list of
+    the jersey
+    numbers for that team.
+    """
+    home_team = game_data["home"]
+    away_team = game_data["away"]
+
+    for team in [home_team, away_team]:
+        if team["team_name"] == team_name:
+            return [player["number"] for player in team["players"]]
     pass
+
+
+print(player_numbers("Washington Wizards", game_dict()))
 
 def player_stats():
     pass
