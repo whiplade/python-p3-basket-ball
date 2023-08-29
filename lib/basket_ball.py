@@ -234,12 +234,6 @@ def team_names(game_data):
 print(team_names(game_dict()))
 
 def player_numbers(team_name, game_data=game_dict()):
-    """
-    Args: team name
-    Purpose:returns a list of
-    the jersey
-    numbers for that team.
-    """
     home_team = game_data["home"]
     away_team = game_data["away"]
 
@@ -251,8 +245,23 @@ def player_numbers(team_name, game_data=game_dict()):
 
 print(player_numbers("Washington Wizards", game_dict()))
 
-def player_stats():
+
+def player_stats(player_name, game_data=game_dict):
+    """
+    Args:player's name
+    Purpose:returns a dictionary of that player's stats.
+    """
+    home_team = game_data["home"]
+    away_team = game_data["away"]
+
+    for team in [home_team, away_team]:
+        for player in team["players"]:
+            if player["name"] == player_name:
+                return player
     pass
+
+
+print(player_stats("Bradley Beal", game_dict()))
     
 def average_rebounds_by_shoe_brand():
     pass
