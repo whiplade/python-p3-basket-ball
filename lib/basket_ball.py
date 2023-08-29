@@ -206,11 +206,32 @@ def player_age(player_name, game_data):
                 return player["age"]
     return None
 
-def team_colors():
-    pass
+print(player_age("Kyle Kuzma", game_data=game_dict()))
 
-def team_names():
-    pass
+def team_colors(team_name, game_data):
+    home_team = game_data["home"]
+    away_team = game_data["away"]
+
+    for team in [home_team, away_team]:
+        if team["team_name"] == team_name:
+            return team["colors"]
+    return None
+
+
+print(team_colors("Washington Wizards", game_data=game_dict()))
+
+def team_names(game_data):
+    home_team = game_data["home"]
+    away_team = game_data["away"]
+
+    teams_list = set()
+    for team in [home_team, away_team]:
+        teams_list.add(team["team_name"])
+    return list(teams_list)
+   
+
+
+print(team_names(game_dict()))
 
 def player_numbers():
     pass
