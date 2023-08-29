@@ -96,7 +96,7 @@ def game_dict():
             "colors": ["Red", "White", "Navy Blue"],
             "players": [   
                 {
-                    "name": "Bradley Beal",
+                    "name": "Kyle Kuzma",
                     "number": 3,
                     "position": "Shooting Guard",
                     "points_per_game": 23.2,
@@ -247,10 +247,6 @@ print(player_numbers("Washington Wizards", game_dict()))
 
 
 def player_stats(player_name, game_data=game_dict):
-    """
-    Args:player's name
-    Purpose:returns a dictionary of that player's stats.
-    """
     home_team = game_data["home"]
     away_team = game_data["away"]
 
@@ -261,7 +257,36 @@ def player_stats(player_name, game_data=game_dict):
     pass
 
 
-print(player_stats("Bradley Beal", game_dict()))
+print(player_stats("Kyle Kuzma", game_dict()))
     
-def average_rebounds_by_shoe_brand():
-    pass
+def average_rebounds_by_shoe_brand(game_data=game_dict()):
+   
+    shoe_brand_rebounds_dict = {}
+    player_stats = []
+    home_team = game_data["home"]
+    away_team = game_data["away"]
+
+    for team in [home_team, away_team]:
+        player_stats.extend(team["players"]) 
+
+        for player in player_stats:
+            shoe_brand = player["shoe_brand"]
+            player_rebounds_per_game = player["rebounds_per_game"]
+
+        
+            if shoe_brand not in shoe_brand_rebounds_dict:
+                shoe_brand_rebounds_dict[shoe_brand] = [player_rebounds_per_game]
+            else:
+                shoe_brand_rebounds_dict[shoe_brand].append(player_rebounds_per_game)
+
+    
+    for shoe_brand, rebound_list in shoe_brand_rebounds_dict.items():
+        total_rebounds = sum(rebound_list)
+        num_of_players = len(rebound_list)
+        avg_rebounds = total_rebounds / num_of_players
+        avg_rebounds = "{:.2f}".format(avg_rebounds)
+
+        print(f"{shoe_brand}: {avg_rebounds}")
+
+
+average_rebounds_by_shoe_brand(game_dict())
