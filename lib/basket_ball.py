@@ -196,8 +196,15 @@ def num_points_per_game(player_name, game_data=game_dict()):
 
 print(num_points_per_game("Kyle Kuzma", game_data=game_dict()))
 
-def player_age():
-    pass
+def player_age(player_name, game_data):
+    home_team = game_data["home"]
+    away_team = game_data["away"]
+
+    for team in [home_team, away_team]:
+        for player in team["players"]:
+            if player["name"] == player_name:
+                return player["age"]
+    return None
 
 def team_colors():
     pass
